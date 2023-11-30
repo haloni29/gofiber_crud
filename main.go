@@ -1,6 +1,8 @@
 package main
 
 import (
+	"crud_go/database"
+	"crud_go/models"
 	"crud_go/routes"
 	"log"
 
@@ -8,6 +10,10 @@ import (
 )
 
 func main() {
+
+	database.ConnectDB()
+	database.DB.AutoMigrate(models.Users{})
+
 	app := fiber.New()
 
 	routes.UserRouter(app)
